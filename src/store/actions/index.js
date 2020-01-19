@@ -25,7 +25,7 @@ export function fetchMovieDetails(movieId) {
     try {
       dispatch(setFetchingDetails(true))
 
-      const movie = await MoviesService.fetchMovieDetails(movieId)
+      const { data: movie } = await MoviesService.fetchMovieDetails(movieId)
 
       dispatch(setMovieDetails(movie))
     } catch (error) {
@@ -39,13 +39,13 @@ export function fetchMovieDetails(movieId) {
 export function fetchMoviesList() {
   return async (dispatch, getState) => {
     try {
-      const { page, searchText } = getState()
+      const { pagination: { page, searchText } } = getState()
 
       dispatch(setFetchingList(true))
 
-      const response = await MoviesService.fetchMoviesList({ page, searchText })
+      const { data } = await MoviesService.fetchMoviesList({ page, searchText })
 
-      const { page: currentPage, results, total_pages } = response;
+      const { page: currentPage, results, total_pages } = data;
 
       dispatch(setPage(currentPage))
 

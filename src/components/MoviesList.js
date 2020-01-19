@@ -5,7 +5,7 @@ import MovieCard from './MovieCard'
 
 function MoviesList({ movies = {} }) {
   const movieCards = Object.values(movies).map((movie) => {
-    return <MovieCard movie={movie} />
+    return <MovieCard key={movie.id} movie={movie} />
   })
 
   return (

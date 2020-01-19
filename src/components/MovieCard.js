@@ -11,7 +11,7 @@ const MovieCard = ({ movie }) => {
     <div className="MovieCard card">
       <MoviePoster poster={poster_path} title={title} />
       <div className="card-img-overlay">
-        <h5 className="card-title">{title}</h5>
+        <h4 className="card-title">{title}</h4>
         <p class="card-text"><b>Release date:</b> {release_date}</p>
         <p class="card-text"><b>Vote average:</b> {vote_average}</p>
         <p class="card-text"><b>Overview:</b> {trimText(overview, 200)}</p>
