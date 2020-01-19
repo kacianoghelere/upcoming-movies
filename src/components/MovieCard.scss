@@ -1,0 +1,21 @@
+.MovieCard {
+
+  &,
+  .card-img-overlay,
+  .card-img-top {
+    border-radius: .5em;
+  }
+
+  .card-img-overlay {
+    background-color: rgba(black, .75);
+    color: white;
+    opacity: 0;
+    transition: opacity ease-in-out .25s;
+  }
+
+  &:hover {
+    .card-img-overlay {
+      opacity: 1;
+    }
+  }
+}
