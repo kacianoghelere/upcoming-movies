@@ -11,6 +11,7 @@ export default function movies(state = {}, action) {
       return {
         ...state,
         [action.movie.id]: {
+          ...state[action.movie.id],
           ...action.movie,
           loaded: true
         }

@@ -1,24 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import MovieCard from './MovieCard'
 
-function MoviesList({ movies = {} }) {
-  const movieCards = Object.values(movies).map((movie) => {
-    return <MovieCard key={movie.id} movie={movie} />
-  })
-
+export default function MoviesList({ movies }) {
   return (
-    <div className="card-columns">
-      {movieCards}
+    <div className="MoviesList row mx-0">
+      {Object.values(movies).map((movie) => (
+        <div className="col-12 col-sm-6 col-md-4 col-lg-3 p-1" key={movie.id}>
+          <MovieCard movie={movie} />
+        </div>
+      ))}
     </div>
   )
 }
-
-const mapStateToProps = ({ movies }) => ({
-  movies
-})
-
-export default connect(
-  mapStateToProps
-)(MoviesList)
