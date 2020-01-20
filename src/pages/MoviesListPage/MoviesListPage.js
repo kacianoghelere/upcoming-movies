@@ -14,7 +14,10 @@ class MoviesListPage extends Component {
 
   render() {
     return (
-      <Page className="MoviesListPage" header={<h1>Movies List</h1>}>
+      <Page
+        className="MoviesListPage"
+        header={<h2 className="text-center">Upcoming movies</h2>}
+      >
         <MoviesList movies={this.props.movies} />
       </Page>
     );
