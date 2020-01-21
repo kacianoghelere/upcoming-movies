@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const httpClient = axios.create({
-  baseURL: 'http://localhost:8000/api/movies',
+  baseURL: `${process.env.REACT_APP_MOVINDEX_API_BASE_URL}`,
   headers: {
     'Authorization': `${process.env.REACT_APP_MOVINDEX_KEY}`
   },
