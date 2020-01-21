@@ -15,5 +15,5 @@ export function fetchMovieDetails(movieId) {
 export function fetchMoviesList(params = {}) {
   const queryString = new URLSearchParams(params).toString()
 
-  return httpClient.get(`/?${queryString}`)
+  return httpClient.get(`?${queryString}`)
 }
