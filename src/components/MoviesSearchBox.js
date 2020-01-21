@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import debounce from 'lodash.debounce'
 
 import { fetchMoviesList } from '../store/actions'
 import './MoviesSearchBox.scss'
-
-let timeoutId = null
 
 class MoviesSearchBox extends Component {
 
@@ -23,13 +22,7 @@ class MoviesSearchBox extends Component {
       searchText: value
     })
 
-    if (timeoutId) {
-      clearTimeout(timeoutId)
-    }
-
-    timeoutId = setTimeout(() => {
-      this.props.fetchMoviesList(value)
-    }, 300);
+    debounce(() => this.props.fetchMoviesList(value), 300);
   }
 
   render() {
