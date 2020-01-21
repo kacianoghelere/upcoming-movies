@@ -3,12 +3,13 @@ import React from 'react'
 export default function MovieGenres({ movie }) {
   return (
     <p>
-      {(movie.genres || []).map(({ name }) => (
+      {(movie.genres || []).map((genre) => (
         <span
+          key={genre.id}
           className="badge badge-secondary mr-1"
-          style={{'font-size': '100%'}}
+          style={{ fontSize: '100%' }}
         >
-          {name}
+          {genre.name}
         </span>
       ))}
     </p>

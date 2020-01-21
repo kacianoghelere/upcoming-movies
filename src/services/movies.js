@@ -1,13 +1,19 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:8000/api/movies'
+const httpClient = axios.create({
+  baseURL: 'http://localhost:8000/api/movies',
+  headers: {
+    'Authorization': `${process.env.REACT_APP_MOVINDEX_KEY}`
+  },
+  timeout: 30000
+})
 
 export function fetchMovieDetails(movieId) {
-  return axios.get(`${baseUrl}/${movieId}`)
+  return httpClient.get(`${movieId}`)
 }
 
 export function fetchMoviesList(params = {}) {
   const queryString = new URLSearchParams(params).toString()
 
-  return axios.get(`${baseUrl}?${queryString}`)
+  return httpClient.get(`/?${queryString}`)
 }

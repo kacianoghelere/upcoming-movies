@@ -6,10 +6,10 @@ export default function MovieVideos({ movie }) {
   }
 
   const movieVideos = (movie.videos || []).map((video) => (
-    <div class="col p-1" key={video.id}>
-      <div class="embed-responsive embed-responsive-16by9">
+    <div className="col p-1" key={video.id}>
+      <div className="embed-responsive embed-responsive-16by9">
         <iframe
-          class="embed-responsive-item"
+          className="embed-responsive-item"
           src={`https://www.youtube.com/embed/${video.key}`}
           title={video.name}
         />
