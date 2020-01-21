@@ -5,7 +5,7 @@ import { trimText } from '../services/utils'
 import MoviePoster from './MoviePoster'
 import './MovieCard.scss'
 
-function MovieCard({ movie }) {
+export default function MovieCard({ movie }) {
   return (
     <NavLink className="MovieCard card h-100" to={`/movie/${movie.id}`}>
       <MoviePoster poster={movie.poster_path} title={movie.title} />
@@ -20,5 +20,3 @@ function MovieCard({ movie }) {
     </NavLink>
   )
 }
-
-export default MovieCard
