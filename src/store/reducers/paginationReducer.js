@@ -16,7 +16,7 @@ export default function pagination(state = initialState, action) {
     case ActionTypes.SET_SEARCH_TEXT:
       return {
         ...state,
-        page: action.searchText
+        searchText: action.searchText
       }
     case ActionTypes.SET_TOTAL_PAGES:
       return {

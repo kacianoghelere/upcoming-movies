@@ -1,24 +1,19 @@
 import * as MoviesService from '../../services/movies';
 import * as UtilsService from '../../services/utils';
-import * as ActionTypes from './types';
 import {
   setFetchingDetails,
   setFetchingList
 } from './fetchingActions';
 import {
   setPage,
+  setSearchText,
   setTotalPages
 } from './paginationActions';
-
-const setMovieDetails = (movie) => ({
-  type: ActionTypes.SET_MOVIE_DETAILS,
-  movie
-})
-
-const setMoviesList = (moviesList) => ({
-  type: ActionTypes.SET_MOVIES_LIST,
-  moviesList
-})
+import {
+  resetMoviesList,
+  setMovieDetails,
+  setMoviesList
+} from './moviesActions';
 
 export function fetchMovieDetails(movieId) {
   return async (dispatch) => {
@@ -36,14 +31,23 @@ export function fetchMovieDetails(movieId) {
   }
 }
 
-export function fetchMoviesList() {
+export function fetchMoviesList(searchText = '') {
   return async (dispatch, getState) => {
     try {
-      const { pagination: { page, searchText } } = getState()
+      const { pagination } = getState()
 
       dispatch(setFetchingList(true))
 
-      const { data } = await MoviesService.fetchMoviesList({ page, searchText })
+      const { data } = await MoviesService.fetchMoviesList({
+        page: pagination.page,
+        searchText
+      })
+
+      if (searchText !== pagination.searchText) {
+        dispatch(setSearchText(searchText))
+
+        dispatch(resetMoviesList())
+      }
 
       const { page: currentPage, results, total_pages } = data;
 
@@ -55,9 +59,25 @@ export function fetchMoviesList() {
 
       dispatch(setMoviesList(moviesList))
     } catch (error) {
-
+      console.error('fetchMoviesList', error)
     } finally {
       dispatch(setFetchingList(false))
     }
+  }
+}
+
+export function fetchMoviesListNextPage() {
+  return (dispatch, getState) => {
+    const { pagination: { page, searchText, totalPages } } = getState()
+
+    if ((page + 1) >= totalPages) {
+      return
+    }
+
+    const nextPage = (page + 1)
+
+    dispatch(setPage(nextPage))
+
+    dispatch(fetchMoviesList(searchText))
   }
 }

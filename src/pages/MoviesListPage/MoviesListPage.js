@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 
 import { fetchMoviesList } from '../../store/actions'
 import Page from '../Page/Page'
+import LoadingIndicator from '../../components/LoadingIndicator'
 import MoviesList from '../../components/MoviesList'
+import MoviesSearchBox from '../../components/MoviesSearchBox'
 
 class MoviesListPage extends Component {
 
@@ -16,9 +18,10 @@ class MoviesListPage extends Component {
     return (
       <Page
         className="MoviesListPage"
-        header={<h2 className="text-center">Upcoming movies</h2>}
+        header={<MoviesSearchBox />}
       >
         <MoviesList movies={this.props.movies} />
+        {this.props.fetchingMoviesList ? <LoadingIndicator /> : null}
       </Page>
     );
   }
@@ -29,7 +32,10 @@ MoviesListPage.propTypes = {
   fetchMoviesList: PropTypes.func.isRequired
 }
 
-const mapStateToProps = ({ movies }) => ({ movies })
+const mapStateToProps = ({ fetching: { fetchingMoviesList }, movies }) => ({
+  fetchingMoviesList,
+  movies
+})
 
 const mapDispatchToProps = { fetchMoviesList }
 

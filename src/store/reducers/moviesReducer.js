@@ -1,6 +1,8 @@
 import * as ActionTypes from '../actions/types'
 
-export default function movies(state = {}, action) {
+const initialState = {}
+
+export default function movies(state = initialState, action) {
   switch (action.type) {
     case ActionTypes.SET_MOVIES_LIST:
       return {
@@ -16,6 +18,8 @@ export default function movies(state = {}, action) {
           loaded: true
         }
       }
+    case ActionTypes.RESET_MOVIES_LIST:
+      return initialState
     default:
       return state
   }
