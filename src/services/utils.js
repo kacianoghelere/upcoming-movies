@@ -1,10 +1,17 @@
-export function normalize(collection) {
+export function normalize(collection = [], startingIndex = 0) {
   let result = {}
+
+  let index = startingIndex
 
   for (const item of collection) {
     if (item.id) {
-      result[item.id] = item
+      result[item.id] = {
+        ...item,
+        index
+      }
     }
+
+    index++
   }
 
   return result

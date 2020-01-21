@@ -9,7 +9,7 @@ function MovieCard({ movie }) {
   const { id, title, poster_path, release_date, vote_average, overview } = movie;
 
   return (
-    <NavLink className="MovieCard card" to={`/movie/${id}`}>
+    <NavLink className="MovieCard card h-100" to={`/movie/${id}`}>
       <MoviePoster poster={poster_path} title={title} />
       <div className="card-img-overlay">
         <h4 className="card-title">{title}</h4>

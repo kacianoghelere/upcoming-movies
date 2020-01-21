@@ -34,7 +34,7 @@ export function fetchMovieDetails(movieId) {
 export function fetchMoviesList(searchText = '') {
   return async (dispatch, getState) => {
     try {
-      const { pagination } = getState()
+      const { pagination, movies } = getState()
 
       dispatch(setFetchingList(true))
 
@@ -55,7 +55,10 @@ export function fetchMoviesList(searchText = '') {
 
       dispatch(setTotalPages(total_pages))
 
-      const moviesList = UtilsService.normalize(results)
+      const moviesList = UtilsService.normalize(
+        results,
+        Object.keys(movies).length
+      )
 
       dispatch(setMoviesList(moviesList))
     } catch (error) {
