@@ -15,4 +15,4 @@ The data flows more or less like this:
 I've builted the application with React the view renderer, Redux as the state manager, React-Router as the navigation manager, Boostrap as the visual framework and some other libs to better work with redux, like redux-thunk and react-redux.
 
 ## Issues
-Cound not connect to the Heroku API because of some CORS issues.
+- ~Cound not connect to the Heroku API because of some CORS issues.~
