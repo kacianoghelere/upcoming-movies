@@ -5,6 +5,8 @@ import debounce from 'lodash.debounce'
 import { fetchMoviesList } from '../store/actions'
 import './MoviesSearchBox.scss'
 
+let debounceId = null
+
 class MoviesSearchBox extends Component {
 
   constructor(props) {
@@ -22,7 +24,11 @@ class MoviesSearchBox extends Component {
       searchText: value
     })
 
-    debounce(() => this.props.fetchMoviesList(value), 300);
+    if (debounceId) {
+      clearTimeout(debounceId)
+    }
+
+    debounceId = setTimeout(() => this.props.fetchMoviesList(value), 300);
   }
 
   render() {
