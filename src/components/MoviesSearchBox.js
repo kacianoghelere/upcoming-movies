@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import debounce from 'lodash.debounce'
 
 import { fetchMoviesList } from '../store/actions'
 import './MoviesSearchBox.scss'
