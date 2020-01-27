@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const httpClient = axios.create({
-  baseURL: `${process.env.REACT_APP_MOVINDEX_API_BASE_URL}`,
+  baseURL: `${process.env.REACT_APP_MOVINDEX_API_BASE_URL}/api/movies`,
   headers: {
     'Authorization': `${process.env.REACT_APP_MOVINDEX_KEY}`
   },
